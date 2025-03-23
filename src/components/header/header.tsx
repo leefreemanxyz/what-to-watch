@@ -24,7 +24,7 @@ export function Header() {
           </Link>
           <div className="grid gap-2 py-6">
             <Link
-              href="#"
+              href="/"
               className="flex w-full items-center py-2 text-lg font-semibold"
               prefetch={false}
             >
@@ -38,7 +38,7 @@ export function Header() {
         <NavigationMenuList>
           <NavigationMenuLink asChild>
             <Link
-              href="#"
+              href="/"
               className="flex w-full items-center py-2 text-lg font-semibold"
               prefetch={false}
             >
