@@ -1,14 +1,26 @@
 import { Show } from "@/schema/show";
-import Image from "next/image";
 import Link from "next/link";
 import { ShowImage } from "../show-image/show-image";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const ShowCard = ({ show }: { show: Show }) => {
   return (
-    <Link href={`/show/${show.id}`}>
-      <div className="relative">
-        <ShowImage show={show} />
-      </div>
-    </Link>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Link href={`/show/${show.id}`}>
+            <ShowImage show={show} />
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{show.name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
