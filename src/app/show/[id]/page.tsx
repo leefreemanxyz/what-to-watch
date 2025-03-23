@@ -1,5 +1,5 @@
 import { EpisodesList } from "@/components/episodes-list/episodes-list";
-import { H1, H3 } from "@/components/headings/headings";
+import { H1, H2 } from "@/components/headings/headings";
 import { ShowImage } from "@/components/show-image/show-image";
 import { Badge } from "@/components/ui/badge";
 import { ShowSchema } from "@/schema/show";
@@ -29,17 +29,18 @@ export default async function ShowDetailPage({
         {parsedDataWithEpisodes.data.genres.map((genre) => {
           return <Badge key={genre}>{genre}</Badge>;
         })}
+        <Badge>User rating: {parsedDataWithEpisodes.data.rating.average}</Badge>
       </div>
       <p>
         Aired: {parsedDataWithEpisodes.data.premiered} -{" "}
         {parsedDataWithEpisodes.data.ended ?? "Present"}
       </p>
-      <H3>Summary</H3>
-      <p
+      <H2>Summary</H2>
+      <div
         dangerouslySetInnerHTML={{
           __html: parsedDataWithEpisodes.data.summary,
         }}
-      ></p>
+      ></div>
       {parsedDataWithEpisodes.data._embedded?.episodes && (
         <EpisodesList
           episodes={parsedDataWithEpisodes.data._embedded.episodes}

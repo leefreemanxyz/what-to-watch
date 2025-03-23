@@ -109,12 +109,15 @@ export const ShowSchema = z.object({
     .nullable(),
   summary: z.string(),
   updated: z.number(),
-  _links: z.object({
-    self: z.object({ href: z.string().url() }),
-    previousepisode: z
-      .object({ href: z.string().url(), name: z.string() })
-      .nullable(),
-  }),
+  _links: z
+    .object({
+      self: z.object({ href: z.string().url() }),
+      previousepisode: z
+        .object({ href: z.string().url(), name: z.string() })
+        .nullable()
+        .optional(),
+    })
+    .nullable(),
   _embedded: z
     .object({ episodes: z.array(EpisodeSchema).optional() })
     .optional(),
