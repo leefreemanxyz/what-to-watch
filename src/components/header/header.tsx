@@ -21,32 +21,8 @@ export function Header() {
     }
   };
   return (
-    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="lg:hidden">
-            <MenuIcon />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent title="Menu" side="left">
-          <p className="sr-only">Menu</p>
-          <Link href="#" prefetch={false}>
-            <span className="sr-only">Home</span>
-          </Link>
-          <div className="grid gap-2 py-6">
-            <Link
-              href="/"
-              className="flex w-full items-center py-2 text-lg font-semibold"
-              prefetch={false}
-            >
-              Home
-            </Link>
-          </div>
-        </SheetContent>
-      </Sheet>
-
-      <NavigationMenu title="Menu" className="hidden lg:flex">
+    <header className="container mx-auto flex h-20 w-full shrink-0 items-center ">
+      <NavigationMenu title="Menu" className="flex">
         <NavigationMenuList>
           <NavigationMenuLink asChild>
             <Link

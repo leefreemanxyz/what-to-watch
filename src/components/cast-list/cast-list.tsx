@@ -9,7 +9,7 @@ export const CastList = ({ cast }: { cast: Cast[] }) => {
         // but it turns out this API returns duplicates(!)
         // so I'll just use the index, which is not ideal but works for now
         return (
-          <div key={index}>
+          <div key={index} className="w-[150px]">
             <ShowImage
               width={150}
               height={210}
@@ -17,8 +17,8 @@ export const CastList = ({ cast }: { cast: Cast[] }) => {
               image={castMember.person.image}
               name={`${castMember.person.name} / ${castMember.character.name}`}
             />
-            <p className="text-xs">{castMember.character.name}</p>
-            <p className="text-xs">{castMember.person.name}</p>
+            <p className="text-xs truncate">{castMember.character.name}</p>
+            <p className="text-xs truncate">{castMember.person.name}</p>
           </div>
         );
       })}

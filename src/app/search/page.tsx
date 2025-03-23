@@ -1,11 +1,10 @@
 import { ShowCard } from "@/components/show-card/show-card";
 import { SearchShowsSchema } from "@/schema/show";
-import { SearchParams } from "next/dist/server/request/search-params";
 
 export default async function Search({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const query = await searchParams;
   const q = query.q;

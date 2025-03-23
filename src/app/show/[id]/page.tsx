@@ -8,7 +8,7 @@ import { ShowSchema } from "@/schema/show";
 export default async function ShowDetailPage({
   params,
 }: {
-  params: { id: Promise<string> };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
   const response = await fetch(
