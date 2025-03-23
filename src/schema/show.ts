@@ -101,10 +101,12 @@ export const ShowSchema = z.object({
     thetvdb: z.number().nullable(),
     imdb: z.string().nullable(),
   }),
-  image: z.object({
-    medium: z.string().url(),
-    original: z.string().url(),
-  }),
+  image: z
+    .object({
+      medium: z.string().url(),
+      original: z.string().url(),
+    })
+    .nullable(),
   summary: z.string(),
   updated: z.number(),
   _links: z.object({
@@ -119,5 +121,12 @@ export const ShowSchema = z.object({
 });
 
 export const ShowsArraySchema = z.array(ShowSchema);
+
+export const SearchShowsSchema = z.array(
+  z.object({
+    score: z.number(),
+    show: ShowSchema,
+  })
+);
 
 export type Show = z.infer<typeof ShowSchema>;
