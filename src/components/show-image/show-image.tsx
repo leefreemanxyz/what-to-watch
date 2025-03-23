@@ -9,7 +9,12 @@ type ImageProps = {
   width?: number;
 };
 
-export const ShowImage = ({ image, name, height, width }: ImageProps) => {
+export const ShowImage = ({
+  image,
+  name,
+  height = 280,
+  width = 200,
+}: ImageProps) => {
   return (
     <div>
       {image?.medium ? (
