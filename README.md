@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TV Maze Viewer
 
-## Getting Started
+This is a very simple web application that displays TV shows based on the TVMaze API. You can find the API documentation at [https://www.tvmaze.com/api](https://www.tvmaze.com/api).
 
-First, run the development server:
+It is built using NextJS, TypeScript, Zod and Shadcn. To run it, clone this repo, run `npm i` and `npm run dev`, then open your browser at the port specifed in your terminal(!).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About the application
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The homepage has a grid layout of TV shows, they are categorised by genre and sorted by score. A list layout has not been provided.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A user can also search for a show using the input in the header. If the user submits their query, they will be redirected to the search results page.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+If the user clicks on a show, they will be taken to the show detail page, which has information about the show, the cast and the episodes of the show.
 
-## Learn More
+### Styling
 
-To learn more about Next.js, take a look at the following resources:
+The styling provided is incredibly minimal and uses a lot of components directly from Shadcn. It's nice to have a design to aim for, but in it's absence I'm focusing on function over form.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### API documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+TVMaze doesn't provide OpenAPI specs, so I've used Zod to validate the data from the API and stripped out the unused fields. The Zod schemas are based on observing what is returned by the API, so there may be mistakes. Under normal circumstances, schemas, interfaces, client sdk etc. would be generated from a spec document.
 
-## Deploy on Vercel
+### Testing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+While this application is free of linting and type errors, there aren't any unit or integration tests written. If I were to write unit tests, then I would use Vitest to test the lib/shows files genre grouping function, but as the application is mostly static data, there isn't that much to unit test.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+With a tool like Playwright, I would mock the calls to the endpoints and test navigating from the home page to a detail page, and using the search bar to navigate to the search page.
