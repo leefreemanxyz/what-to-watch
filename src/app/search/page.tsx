@@ -1,3 +1,4 @@
+import { H1 } from "@/components/headings/headings";
 import { ShowCard } from "@/components/show-card/show-card";
 import { SearchShowsSchema } from "@/schema/show";
 
@@ -17,8 +18,8 @@ export default async function Search({
     return <div>Failed to parse data: {parsedData.error.message}</div>;
   }
   return (
-    <div>
-      <h1>Search Results for {q}</h1>
+    <div className="container mx-auto">
+      <H1>Search Results for {q}</H1>
       <div className="flex flex-wrap gap-2">
         {parsedData.data.map((show) => {
           return <ShowCard key={show.show.id} show={show.show} />;

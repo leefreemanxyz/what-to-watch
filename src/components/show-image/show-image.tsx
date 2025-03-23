@@ -9,18 +9,16 @@ type ImageProps = {
   width?: number;
 };
 
-export const ShowImage = ({
-  image,
-  name,
-  height = 280,
-  width = 280,
-}: ImageProps) => {
+export const ShowImage = ({ image, name, height, width }: ImageProps) => {
   return (
     <div>
       {image?.medium ? (
         <Image alt={name} width={width} height={height} src={image?.medium} />
       ) : (
-        <div className={`w-[${width}px] h-[${height}px] bg-gray-200`}>
+        <div
+          style={{ width: `${width}px`, height: `${height}px` }}
+          className="bg-gray-200"
+        >
           <p>No image found for {name}</p>
         </div>
       )}
