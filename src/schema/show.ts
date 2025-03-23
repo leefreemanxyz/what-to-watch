@@ -33,6 +33,25 @@ export const EpisodeArraySchema = z.array(EpisodeSchema);
 
 export type Episode = z.infer<typeof EpisodeSchema>;
 
+const CastSchema = z.object({
+  person: z.object({
+    id: z.number(),
+    name: z.string(),
+    image: z
+      .object({
+        medium: z.string().url(),
+      })
+      .nullable(),
+  }),
+  character: z.object({
+    name: z.string(),
+  }),
+});
+
+export const CastArraySchema = z.array(CastSchema);
+
+export type Cast = z.infer<typeof CastSchema>;
+
 export const ShowSchema = z.object({
   id: z.number(),
   url: z.string().url(),
@@ -119,7 +138,10 @@ export const ShowSchema = z.object({
     })
     .nullable(),
   _embedded: z
-    .object({ episodes: z.array(EpisodeSchema).optional() })
+    .object({
+      episodes: z.array(EpisodeSchema).optional(),
+      cast: z.array(CastSchema).optional(),
+    })
     .optional(),
 });
 

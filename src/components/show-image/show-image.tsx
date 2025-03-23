@@ -1,12 +1,29 @@
-import { Show } from "@/schema/show";
 import Image from "next/image";
 
-export const ShowImage = ({ show }: { show: Show }) => {
-  return show.image ? (
-    <Image alt={show.name} width={200} height={280} src={show.image?.medium} />
-  ) : (
-    <div className="w-[200px] h-[280px] bg-gray-200">
-      <p>No image found for {show.name}</p>
+type ImageProps = {
+  image?: {
+    medium?: string;
+  } | null;
+  name: string;
+  height?: number;
+  width?: number;
+};
+
+export const ShowImage = ({
+  image,
+  name,
+  height = 280,
+  width = 280,
+}: ImageProps) => {
+  return (
+    <div>
+      {image?.medium ? (
+        <Image alt={name} width={width} height={height} src={image?.medium} />
+      ) : (
+        <div className={`w-[${width}px] h-[${height}px] bg-gray-200`}>
+          <p>No image found for {name}</p>
+        </div>
+      )}
     </div>
   );
 };

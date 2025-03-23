@@ -14,7 +14,12 @@ export const ShowCard = ({ show }: { show: Show }) => {
       <Tooltip>
         <TooltipTrigger>
           <Link href={`/show/${show.id}`}>
-            <ShowImage show={show} />
+            <ShowImage
+              height={280}
+              width={200}
+              image={show.image}
+              name={show.name}
+            />
           </Link>
         </TooltipTrigger>
         <TooltipContent>

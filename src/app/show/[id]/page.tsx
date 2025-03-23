@@ -1,3 +1,4 @@
+import { CastList } from "@/components/cast-list/cast-list";
 import { EpisodesList } from "@/components/episodes-list/episodes-list";
 import { H1, H2 } from "@/components/headings/headings";
 import { ShowImage } from "@/components/show-image/show-image";
@@ -11,7 +12,7 @@ export default async function ShowDetailPage({
 }) {
   const { id } = await params;
   const response = await fetch(
-    `https://api.tvmaze.com/shows/${id}?embed=episodes`
+    `https://api.tvmaze.com/shows/${id}?embed[]=episodes&embed[]=cast`
   );
 
   const data = await response.json();
@@ -23,7 +24,10 @@ export default async function ShowDetailPage({
   }
   return (
     <div className="container mx-auto grid gap-4">
-      <ShowImage show={parsedDataWithEpisodes.data} />
+      <ShowImage
+        image={parsedDataWithEpisodes.data.image}
+        name={parsedDataWithEpisodes.data.name}
+      />
       <H1>{parsedDataWithEpisodes.data.name}</H1>
       <div className="flex gap-2">
         {parsedDataWithEpisodes.data.genres.map((genre) => {
@@ -35,6 +39,9 @@ export default async function ShowDetailPage({
         Aired: {parsedDataWithEpisodes.data.premiered} -{" "}
         {parsedDataWithEpisodes.data.ended ?? "Present"}
       </p>
+      {parsedDataWithEpisodes.data._embedded?.cast && (
+        <CastList cast={parsedDataWithEpisodes.data._embedded?.cast} />
+      )}
       <H2>Summary</H2>
       <div
         dangerouslySetInnerHTML={{
