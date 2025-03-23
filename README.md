@@ -6,6 +6,8 @@ It is built using NextJS, TypeScript, Zod and Shadcn. To run it, clone this repo
 
 ## About the application
 
+### Functionality
+
 The homepage has a grid layout of TV shows, they are categorised by genre and sorted by score. A list layout has not been provided.
 
 A user can also search for a show using the input in the header. If the user submits their query, they will be redirected to the search results page.
