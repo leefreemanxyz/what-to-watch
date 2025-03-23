@@ -1,5 +1,7 @@
 import { EpisodesList } from "@/components/episodes-list/episodes-list";
-import { H1 } from "@/components/headings/headings";
+import { H1, H3 } from "@/components/headings/headings";
+import { ShowImage } from "@/components/show-image/show-image";
+import { Badge } from "@/components/ui/badge";
 import { ShowSchema } from "@/schema/show";
 
 export default async function ShowDetailPage({
@@ -20,13 +22,24 @@ export default async function ShowDetailPage({
     );
   }
   return (
-    <div>
+    <div className="container mx-auto grid gap-4">
+      <ShowImage show={parsedDataWithEpisodes.data} />
       <H1>{parsedDataWithEpisodes.data.name}</H1>
-      <p>{parsedDataWithEpisodes.data.genres.join(", ")}</p>
+      <div className="flex gap-2">
+        {parsedDataWithEpisodes.data.genres.map((genre) => {
+          return <Badge key={genre}>{genre}</Badge>;
+        })}
+      </div>
       <p>
-        {parsedDataWithEpisodes.data.premiered} -{" "}
-        {parsedDataWithEpisodes.data.ended}
+        Aired: {parsedDataWithEpisodes.data.premiered} -{" "}
+        {parsedDataWithEpisodes.data.ended ?? "Present"}
       </p>
+      <H3>Summary</H3>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: parsedDataWithEpisodes.data.summary,
+        }}
+      ></p>
       {parsedDataWithEpisodes.data._embedded?.episodes && (
         <EpisodesList
           episodes={parsedDataWithEpisodes.data._embedded.episodes}
