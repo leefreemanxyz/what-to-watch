@@ -24,6 +24,10 @@ Responsiveness can be implemented later, if required.
 
 TVMaze doesn't provide OpenAPI specs, so I've used Zod to validate the data from the API and stripped out the unused fields. The Zod schemas are based on observing what is returned by the API, so there may be mistakes. Under normal circumstances, schemas, interfaces, client sdk etc. would be generated from a spec document.
 
+### Error handling
+
+I haven't had time to implement error handling for failed HTTP calls or handling no results being returned from the search etc.
+
 ### Testing
 
 While this application is free of linting and type errors, there aren't any unit or integration tests written. If I were to write unit tests, then I would use Vitest to test the lib/shows files genre grouping function, but as the application is mostly static data, there isn't that much to unit test.
